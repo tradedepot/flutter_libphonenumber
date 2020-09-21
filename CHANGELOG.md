@@ -1,3 +1,6 @@
+# 0.4.0
+- Migrate to null safety.
+
 # 0.3.7
 - Fixed bug where device locale was not correctly detected on iOS.
 
