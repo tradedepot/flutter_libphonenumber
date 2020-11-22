@@ -1,3 +1,6 @@
+# 1.0.1-nullsafety
+- Add constraint for flutter v1.10.0.
+
 # 1.0.0-nullsafety
 - Migrate to null safety.
 
