@@ -1,6 +1,19 @@
 # 0.4.0-nullsafety
 - Migrate to null safety.
 
+# 0.3.11
+- Update iOS minimum deployment to 9.0.
+
+# 0.3.10
+- Bumped PhoneNumberKit to 3.3 (iOS) and libphonenumber to 8.12.11 (Android).
+- Fixed overflows in example app on smaller devices.
+
+# 0.3.9
+- Bump android compileSdkVersion to 29.
+
+# 0.3.8
+- Downgrade Android minSdkVersion version from 21 to 18 and bump libphonenumber version from 8.12.5 to 8.12.10 via [#3](https://github.com/bottlepay/flutter_libphonenumber/pull/3).
+
 # 0.3.7
 - Fixed bug where device locale was not correctly detected on iOS.
 

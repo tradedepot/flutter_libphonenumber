@@ -8,8 +8,8 @@ Uses the following native libraries:
 
 | Platform | Library        | Version |
 |----------|----------------|---------|
-| Android  | libphonenumber | 8.12.5  |
-| iOS      | PhoneNumberKit | 3.2.0   |
+| Android  | libphonenumber | 8.12.11  |
+| iOS      | PhoneNumberKit | 3.3   |
 
 The main advantage to this lib is it lets you optionally format a phone number synchronously without making calls into libphonenumber with platform calls.
 
@@ -38,7 +38,7 @@ your UI rebuilding every time you need to format a phone number.
 To get around this, we load a mask of every supported phone region's example number from libphonenumber during the `init()` call. We can then use this mask to format an e164 phone number **synchronously** like this:
 ```dart
 final rawNumber = '+14145556666';
-final formattedNumber = FlutterLibphonenumber().formatPhone(rawNumber); // +1 414-555-6666
+final formattedNumber = FlutterLibphonenumber().formatNumberSync(rawNumber); // +1 414-555-6666
 ```
 
 ## CountryManager
@@ -150,9 +150,9 @@ To use it, simply add `LibPhonenumberTextFormatter()` to your `TextField`'s `inp
 ```dart
 TextField(inputFormatters: [LibPhonenumberTextFormatter(
     onCountrySelected: (country) => print('onCountrySelected: $country'),
-    onFormatFinished: (formattedVal) => print('onCountrySelected: $formattedVal')
-    overrideSkipCountryCode: 'GB' // Optionally override country to GB and return the number w/o +44. Disabled auto-detection of country and forces using the mask of the provided country.
-    phoneNumberType = PhoneNumberType.fixedLine // Optionally format the number as something other than mobile
-    phoneNumberFormat = PhoneNumberFormat.international // Optionally format the number in its international or national format pattern.
+    onFormatFinished: (formattedVal) => print('onCountrySelected: $formattedVal'),
+    overrideSkipCountryCode: 'GB', // Optionally override country to GB and return the number w/o +44. Disabled auto-detection of country and forces using the mask of the provided country.
+    phoneNumberType: PhoneNumberType.fixedLine, // Optionally format the number as something other than mobile
+    phoneNumberFormat: PhoneNumberFormat.international, // Optionally format the number in its international or national format pattern.
 )])
 ```
