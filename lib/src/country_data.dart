@@ -1,4 +1,3 @@
-import 'package:devicelocale/devicelocale.dart';
 import 'package:flutter_libphonenumber/flutter_libphonenumber.dart';
 
 /// Manages countries by code and name
@@ -8,11 +7,10 @@ class CountryManager {
   CountryManager._internal();
 
   var _countries = <CountryWithPhoneCode>[];
-  var deviceLocaleCountryCode = 'GB';
   var _initialized = false;
 
   /// List of all supported countries on the device with phone code metadata
-  List<CountryWithPhoneCode?> get countries => _countries;
+  List<CountryWithPhoneCode> get countries => _countries;
 
   Future<void> loadCountries({
     Map<String, CountryWithPhoneCode> overrides = const {},
@@ -30,15 +28,6 @@ class CountryManager {
         phoneCodesMap[key] = value;
         // print('Applied override for $key');
       });
-
-      /// Get the device locale
-      try {
-        final locale = await Devicelocale.currentLocale;
-        deviceLocaleCountryCode = locale.substring(locale.length - 2);
-      } catch (e) {
-        // print('Error detecting deviceLocaleCountryCode, setting default GB');
-        deviceLocaleCountryCode = 'GB';
-      }
 
       /// Save list of the countries
       _countries = phoneCodesMap.values.toList();
@@ -171,15 +160,13 @@ class CountryWithPhoneCode {
     if (subscringLength < 1) return null;
     var phoneCode = phone.substring(0, subscringLength);
 
-    CountryWithPhoneCode? rawData = CountryManager().countries.firstWhere(
-        ((data) => toNumericString(data.phoneCode.toString()) == phoneCode)
-            as bool Function(CountryWithPhoneCode?),
-        orElse: () => null);
-
-    if (rawData != null) {
-      return rawData;
+    try {
+      return CountryManager()
+          .countries
+          .firstWhere((data) => toNumericString(data.phoneCode) == phoneCode);
+    } on StateError catch (_) {
+      return getCountryDataByPhone(phone, subscringLength: subscringLength - 1);
     }
-    return getCountryDataByPhone(phone, subscringLength: subscringLength - 1);
   }
 
   /// Get the phone mask based on number type and format

@@ -1,6 +1,4 @@
 PODS:
-  - devicelocale (0.0.1):
-    - Flutter
   - Flutter (1.0.0)
   - flutter_libphonenumber (0.0.1):
     - Flutter
@@ -8,7 +6,6 @@ PODS:
   - PhoneNumberKit/PhoneNumberKitCore (3.3.0)
 
 DEPENDENCIES:
-  - devicelocale (from `.symlinks/plugins/devicelocale/ios`)
   - Flutter (from `Flutter`)
   - flutter_libphonenumber (from `.symlinks/plugins/flutter_libphonenumber/ios`)
 
@@ -17,15 +14,12 @@ SPEC REPOS:
     - PhoneNumberKit
 
 EXTERNAL SOURCES:
-  devicelocale:
-    :path: ".symlinks/plugins/devicelocale/ios"
   Flutter:
     :path: Flutter
   flutter_libphonenumber:
     :path: ".symlinks/plugins/flutter_libphonenumber/ios"
 
 SPEC CHECKSUMS:
-  devicelocale: feebbe5e7a30adb8c4f83185de1b50ff19b44f00
   Flutter: 0e3d915762c693b495b44d77113d4970485de6ec
   flutter_libphonenumber: 3221425e80517c03017ff0952472830d898172bd
   PhoneNumberKit: edd7d55c9bcf5b00cb7675c045b24c698a43c874

@@ -108,11 +108,10 @@ class LibPhonenumberTextFormatter extends TextInputFormatter {
 
     if (overrideSkipCountryCode.isNotEmpty) {
       /// If the user specified the country code, we will use that one directly.
-      countryData = CountryManager().countries.firstWhere(
-          (element) => element?.countryCode == overrideSkipCountryCode,
-          orElse: () => null);
+      try {
+        countryData = CountryManager().countries.firstWhere(
+            (element) => element.countryCode == overrideSkipCountryCode);
 
-      if (countryData != null) {
         /// Since the source isn't going to have a country code in it, add the right country
         /// code, run it through the mask, and then take the result and return it with the
         /// country code removed.
@@ -153,6 +152,8 @@ class LibPhonenumberTextFormatter extends TextInputFormatter {
         /// trim it by the length of the phone code + 1 for the leading plus sign and
         /// then trim off any leading/trailing spaces if necessary.
         return maskedResult.substring(countryData.phoneCode.length + 1).trim();
+      } on StateError catch (_) {
+        //
       }
     } else {
       /// Otherwise we will try to determine the country from the nubmer input so far
