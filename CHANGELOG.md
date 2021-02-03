@@ -1,3 +1,6 @@
+# 1.0.2-nullsafety
+- Bumped underlying native lib versions. PhoneNumberKit -> 3.3.3, libphonenumber -> 8.12.17.
+
 # 1.0.1-nullsafety
 - Add constraint for flutter v1.10.0.
 
