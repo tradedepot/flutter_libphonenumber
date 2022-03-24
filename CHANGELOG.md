@@ -1,3 +1,27 @@
+## [1.2.4] - 2022.03.09
+- Fixed some edge cases with cursor position when `shouldKeepCursorAtEndOfInput` is set to `false`
+
+## [1.2.3] - 2022.03.08
+- New optional setting `shouldKeepCursorAtEndOfInput` on `LibPhonenumberTextFormatter` which will either keep the cursor at the end of the input if the middle of the input is changed, or the cursor will remain at the same position as where it was edited.
+
+## [1.2.2] - 2022.01.12
+- Replaced jcenter with maven central (JeremyLWright).
+
+## [1.2.1] - 2021.09.11
+- Fixed bug where region was not passed to `parse` call in `getFormattedParseResult`.
+
+# 1.2.0
+- BREAKING: renamed `hideCountryCode` to `inputContainsCountryCode` in `LibPhonenumberTextFormatter`.
+- BREAKING: renamed `removeCountryCode` to `removeCountryCodeFromResult` and added new parameter `inputContainsCountryCode` in `formatNumberSync()`. Use this to accurately describe if the input number contains a country code and whether or not the result should strip that country code out.
+
+# 1.1.0
+- Improvements to how masking is performed.
+- Now allows for additional digits to be added on the end of the input mask for countries with varying number patterns.
+
+# 1.0.4
+- Fix number parsing issue by not attaching a leading '+' anymore. This fixes the problem parsing GB numbers starting with 07 which didn't have the 44 country code at the start.
+- Bumped libphonenumber version on android.
+
 # 1.0.3
 - Nullsafety for main version.
 - UK numbers will correctly remove leading 0 now on international numbers.
